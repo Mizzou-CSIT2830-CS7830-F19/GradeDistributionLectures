@@ -41,10 +41,6 @@ export class LoginComponent implements OnInit {
 
   register() {
     if (this.registerFormGroup.valid) {
-      try {
-      } catch (e) {
-        console.log("Unable to register");
-      }
     }
   }
 }
