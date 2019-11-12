@@ -1,0 +1,20 @@
+<form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+    <div>
+        <input placeholder="Email" formControlName="email" type="email" />
+        <input placeholder="Password" formControlName="password" type="password" />
+
+        <button [disabled]="loginFormGroup.invalid">Login</button>
+    </div>
+</form>
+
+<form [formGroup]="registerFormGroup" (ngSubmit)="register()">
+    <div>
+        <input placeholder="Name" formControlName="name" />
+
+        <input placeholder="Email" formControlName="email" type="email" />
+
+        <input placeholder="Password" formControlName="password" type="password" />
+
+        <button [disabled]="registerFormGroup.invalid">Register</button>
+    </div>
+</form>
