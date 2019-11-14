@@ -4,16 +4,7 @@
 
 export const environment = {
   production: false,
-  firebase: {
-    apiKey: "AIzaSyAaeLW7CLXyEFMfG-FmZ2YELHATJvRAr00",
-    authDomain: "gradingdistributionlectures.firebaseapp.com",
-    databaseURL: "https://gradingdistributionlectures.firebaseio.com",
-    projectId: "gradingdistributionlectures",
-    storageBucket: "gradingdistributionlectures.appspot.com",
-    messagingSenderId: "894465211539",
-    appId: "1:894465211539:web:2c180c8478f1fb51d2e166",
-    measurementId: "G-6009CRGQY9"
-  }
+  firebase: {}
 };
 
 /*
