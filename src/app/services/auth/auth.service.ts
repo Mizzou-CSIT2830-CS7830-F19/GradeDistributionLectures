@@ -43,8 +43,8 @@ export class AuthService {
     }
   }
 
-  signUp(email: string, password: string, name: string) {
-    this.afAuth.auth
+  async signUp(email: string, password: string, name: string) {
+    await this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         console.log("User registered succesfully");

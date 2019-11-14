@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-login",
@@ -13,7 +14,11 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
   registerFormGroup: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
     this.loginFormGroup = new FormGroup({
       email: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required)
@@ -49,6 +54,19 @@ export class LoginComponent implements OnInit {
 
   register() {
     if (this.registerFormGroup.valid) {
+      this.authService
+        .signUp(
+          this.registerFormGroup.get("email").value,
+          this.registerFormGroup.get("password").value,
+          this.registerFormGroup.get("name").value
+        )
+        .then(() => {
+          console.log("Finished executing");
+          this.router.navigate([""]);
+        })
+        .catch(e => {
+          this.snackBar.open("Unable to register", null, { duration: 4000 });
+        });
     }
   }
 }
