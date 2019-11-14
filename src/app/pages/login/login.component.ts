@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { AuthService } from "src/app/services/auth/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
   registerFormGroup: FormGroup;
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
     this.loginFormGroup = new FormGroup({
       email: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required)
@@ -29,10 +31,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  login() {
+  async login() {
     console.log("login clicked");
     if (this.loginFormGroup.valid) {
       try {
+        await this.authService.login(
+          this.loginFormGroup.get("email").value,
+          this.loginFormGroup.get("password").value
+        );
+        this.router.navigate([""]);
+        console.log("Went to the dashboard");
       } catch (e) {
         console.log("Unable to log in");
       }
